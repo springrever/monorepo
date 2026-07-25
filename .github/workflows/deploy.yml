@@ -56,11 +56,11 @@ jobs:
 
           # 同步 Admin 构建产物
           rsync -avz -e "ssh -i /tmp/id_rsa -o StrictHostKeyChecking=no" \
-            ./dist/ $SERVER_USER@$SERVER_IP:/www/wwwroot/rhotheradm.kooki.com.cn
+            ./dist/ $SERVER_USER@$SERVER_IP:/www/wwwroot/rhotheradm.kooki.com.cn/monorepo/
 
           # 同步 Seller 构建产物（因为我们的构建策略是将 seller 放在 dist/seller 下）
           rsync -avz -e "ssh -i /tmp/id_rsa -o StrictHostKeyChecking=no" \
-            ./dist/seller/ $SERVER_USER@$SERVER_IP:/www/wwwroot/ehlucky/
+            ./dist/seller/ $SERVER_USER@$SERVER_IP:/www/wwwroot/ehlucky/monorepo/seller/
 
           # 清理临时私钥
           rm -f /tmp/id_rsa
