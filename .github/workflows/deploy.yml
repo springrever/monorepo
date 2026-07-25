@@ -11,6 +11,11 @@ jobs:
       # 1. 拉取代码
       - uses: actions/checkout@v3
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11 # 指定 pnpm 版本，也可以用 latest
+
       # 2. 安装 Node.js
       - uses: actions/setup-node@v3
         with:
