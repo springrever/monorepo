@@ -6,6 +6,8 @@ on:
 
 jobs:
   build-and-deploy:
+    permissions:
+      contents: write # 赋予对仓库内容的写权限
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
