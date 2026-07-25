@@ -24,7 +24,8 @@ jobs:
 
       # 3. 安装 pnpm 并构建
       - name: Install and Build
-        env: PNPM_SUPPLY_CHAIN_POLICY: auto
+        env:
+          PNPM_SUPPLY_CHAIN_POLICY: auto
         run: |
           npm install -g pnpm
           rm -rf node_modules pnpm-lock.yaml
