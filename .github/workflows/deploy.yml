@@ -39,7 +39,7 @@ jobs:
           publish_dir: ./dist
           publish_branch: gh-pages
 
-      # ============ 新增：部署到自己的 VPS 服务器 ============
+      # ============ 新增：部署到自己的 VPS 服务器 ===========
       - name: Deploy to VPS (宝塔)
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
