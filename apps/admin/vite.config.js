@@ -4,6 +4,7 @@ import path from "path"
 const root = path.resolve(__dirname, "../..")
 export default defineConfig({
 	plugins: [vue()],
+	base: "/monorepo/",
 	server: { port: 5173 },
 	resolve: {
 		alias: {
