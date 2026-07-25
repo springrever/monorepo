@@ -8,34 +8,35 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. 拉取代码
       - uses: actions/checkout@v3
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 11 # 指定 pnpm 版本，也可以用 latest
+          version: 11
 
-      # 2. 安装 Node.js
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: "22"
           cache: pnpm
 
-      # 3. 安装 pnpm 并构建
       - name: Install and Build
         env:
           PNPM_SUPPLY_CHAIN_POLICY: auto
         run: |
+          # 写入 .npmrc 配置
+          echo "supply-chain-policy=auto" >> .npmrc
+          echo "allow-build-scripts=true" >> .npmrc
+
           npm install -g pnpm
           rm -rf node_modules pnpm-lock.yaml
-          pnpm install --no-frozen-lockfile --allow-build=esbuild,sharp
+          pnpm install --no-frozen-lockfile
           pnpm run build
 
-      # 4. 部署到 gh-pages 分支（GitHub Pages 专用分支）
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # 构建产物目录
-          publish_branch: gh-pages # 部署到 gh-pages 分支
+          publish_dir: ./dist
+          publish_branch: gh-pages
