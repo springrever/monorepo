@@ -1,0 +1,12 @@
+{
+  "name": "ecommerce-platform",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm run -r --parallel dev",
+    "build": "pnpm run -r build"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.0"
+  }
+}
